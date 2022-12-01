@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function fn_server() {
+		$.ajax({
+			type: "get",
+			dataType: "text",
+			async: false,
+			url: "http://localhost:8090/jspETC/ajax1",
+			data: {param: "jquery study"},
+			success: function (data, textStatus){
+				$("#message").append(data);
+			},
+			error: function (data, textStatus) {
+				alert("에러 발생");
+			},
+			complete: function (data, textStatus){
+				alert("작업을 완료했습니다")
+			}
+		});
+		/*
+			dataType : 응답 데이터 형식
+			async : false(동기), true(비동기)
+			data: {보낼 데이터의 파라미터명: "값"}
+			success: function (data, textStatus){ 서버 연결 성공했을 떄 }
+			error: function (data, textStatus){ 서버 연결 실패했을 때 }
+		*/
+	}
+</script>
+<title>서버로 전송하기</title>
+</head>
+<body>
+	<input type="button" value="전송하기" onclick="fn_server()">
+	<div id="message">
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function fn_server() {
+		$.ajax({
+			type: "post",
+			dataType: "xml",
+			async: false,
+			url: "http://localhost:8090/jspETC/ajax2",
+			success:function (info, textStatus) {
+				$(info).find("book").each(function() {
+					let title = $(this).find("title").text();
+					let writer = $(this).find("writer").text();
+					let image = $(this).find("image").text();
+					$("#bookInfo").append(
+						"<p>제목: " + title + "</p>" +
+						"<p>출판사 지은이: " + writer + "</p>" +
+						"<img src=" + image + " width='300' height='450'>"
+					);
+				});
+			},
+			error: function (data, textStatus) {
+				alert("에러 발생");
+			},
+			complete: function (data, textStatus){
+				alert("작업을 완료했습니다")
+			}
+		});
+	}
+</script>
+<title>서버로 전송하기</title>
+</head>
+<body>
+	<input type="button" value="도서정보 요청" onclick="fn_server()">
+	<div id="bookInfo">
+	
+	</div>
+</body>
+</html>

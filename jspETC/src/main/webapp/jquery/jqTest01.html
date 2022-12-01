@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+	function addHello() {
+		$("#article").html("<p>안녕하세요</p>");
+	}
+	function addImg() {
+		$("#imgArea").html("<img src='./car.jpg'>");
+	}
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="article">
+	</div>
+	
+	<div id="imgArea">
+	</div>
+	<input type="button" value="추가하기" onclick="addHello();">
+	<input type="button" value="이미지 추가하기" onclick="addImg();">
+</body>
+</html>
