@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Cookie popup</title>
+	<script type="text/javascript">
+		function setPopup(obj){
+			if(obj.checked==true){
+				let exDate=new Date();
+				let days=1;
+				exDate.setDate(exDate.getDate()+days);
+				document.cookie="cookiepop=true;path=/; expires="+exDate.toGMTString();
+				window.close();
+			}
+		}
+	</script>
+</head>
+<body>
+	<h3>공지사항</h3>
+	<p>9월 23일 금요일 서버 프로그램 평가</p>
+	<p>DB기본 모듈</p>
+	<input type="checkbox" onclick="setPopup(this);">오늘 팝업창 띄우지 않기
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>쿠키 사용 팝업 테스트</title>
+	<script type="text/javascript">
+		let notShowPopup;
+		window.onload= function() {
+			notShowPopup=getCookieValue();
+			if(notShowPopup != "true"){
+				window.open("popup.html", "popup", "width=400, height=300");
+			}
+		}
+		//쿠키 정보 읽어는 함수
+		function getCookieValue() {
+			let result="false";
+			let cookie, element, value;
+			if(document.cookie != ""){
+				//쿠키가 있으면 if문 수행
+				cookie=document.cookie.split(";");
+				for(let i=0; i<cookie.length; i++){
+					element=cookie[i].split("=");
+					value=element[0];
+					value=value.replace(/^\s*/, "");
+					// \s: 공백 제거
+					if(value=="cookiepop"){
+						result=element[1];
+					}
+				}
+			}
+			
+			return result;
+		}
+		
+		//쿠키 값을 false로 변경하는 함수
+		function deleteCookie() {
+			document.cookie="cookiepop=false;path=/;expires=-1";
+		}
+	</script>
+</head>
+<body>
+	<h1>여기는 메인페이지</h1>
+	<p>쿠키와 관련된 수업중...</p>
+	<input type="button" value="쿠키삭제" onclick="deleteCookie();">
+</body>
+</html>
